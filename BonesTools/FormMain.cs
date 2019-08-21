@@ -150,15 +150,18 @@ namespace BonesTools
             if(this.openFileDL.ShowDialog() == DialogResult.OK)
             {
                 CharactorFileName = this.openFileDL.FileName;
+                SaveCharactorFileName = CharactorFileName;
                 this.lbFileName.Text = System.IO.Path.GetFileNameWithoutExtension(CharactorFileName);
             }
         }
         private void SaveFile()
         {
-            if (this.saveFileDL.ShowDialog() == DialogResult.OK)
-            {
-                SaveCharactorFileName = this.saveFileDL.FileName;
-                //this.lbFileName.Text = System.IO.Path.GetFileNameWithoutExtension(CharactorFileName);
+            if (!System.IO.File.Exists(SaveCharactorFileName)) { 
+                if (this.saveFileDL.ShowDialog() == DialogResult.OK)
+                {
+                    SaveCharactorFileName = this.saveFileDL.FileName;
+                    //this.lbFileName.Text = System.IO.Path.GetFileNameWithoutExtension(CharactorFileName);
+                }
             }
         }
         private void UpdateOneBone(string lineValue)
